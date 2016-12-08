@@ -39,7 +39,7 @@
       offset.left += element.offsetLeft;
       offset.top += element.offsetTop;
 
-      element = element.parentElement;
+      element = element.offsetParent;
     }
 
     return offset;
