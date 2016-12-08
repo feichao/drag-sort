@@ -1,6 +1,9 @@
 ##Drag-Sort
 
 本仓库使用远生JS实现了对下面代码中的block进行拖拽排序的功能。
+
+##[demo][2]
+
 ```
 <div class="drag-wrap">
 	<div class="drag-block">1</div>
@@ -16,3 +19,4 @@
 
 
   [1]: http://o8tapqn1p.bkt.clouddn.com/20161208-drag-sort.png
+  [2]: http://www.0xfc.cn/article/0/5849472d2c2ff13a2ae3751b
