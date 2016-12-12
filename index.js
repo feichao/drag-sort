@@ -6,6 +6,9 @@
   var dragBlocks = doc.querySelectorAll('.drag-block');
   var dragTempBlock;
 
+  var dragSortStartEvent;
+  var dragSortEndEvent;
+
   function init() {
     var tempBlock = doc.createElement('div');
     tempBlock.className = 'temp-block';
@@ -105,6 +108,13 @@
 
       startPoint.x = event.clientX;
       startPoint.y = event.clientY;
+
+      dragSortStartEvent = new CustomEvent('drag-sort-start', {
+        detail: {
+          wrapElement: dragingBlockElement.parentElement
+        }
+      });
+      doc.dispatchEvent(dragSortStartEvent);
     });
   });
 
@@ -141,9 +151,28 @@
       dragingBlockElement.style.top = 0;
       dragingBlockElement.style.position = 'relative';
       dragingBlockElement.style.zIndex = 1;
+
+      dragSortEndEvent = new CustomEvent('drag-sort-end', {
+        detail: {
+          wrapElement: dragingBlockElement.parentElement
+        }
+      });
+      doc.dispatchEvent(dragSortEndEvent);
+
       dragingBlockElement = undefined;
 
       removeTempBlock();
     }
   });
-})(window, document)
+})(window, document);
+
+
+/************************ test start **********************/
+document.addEventListener('drag-sort-start', function(event) {
+  console.log('start drag...');
+});
+
+document.addEventListener('drag-sort-end', function(event) {
+  console.log(event.detail.wrapElement);
+});
+/************************ test end   **********************/
